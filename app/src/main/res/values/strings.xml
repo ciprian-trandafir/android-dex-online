@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">Dex Online</string>
-    <string name="todo">TODO</string>
     <string name="text_loading_screen">© 2022\nCiprian Trandafir. All rights reserved.</string>
     <string name="acas">Acasă</string>
     <string name="caut">Caută</string>
     <string name="salvate">Salvate</string>
     <string name="set_ri">Setări</string>
+    <string name="setari">Setări</string>
+    <string name="todo">TODO</string>
 </resources>

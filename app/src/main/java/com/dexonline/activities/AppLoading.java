@@ -1,6 +1,7 @@
 package com.dexonline.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -9,6 +10,7 @@ import com.dexonline.R;
 import com.dexonline.classes.Definition;
 import com.dexonline.classes.WordOfDay;
 import com.google.gson.Gson;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -26,6 +28,19 @@ public class AppLoading extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_loading);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("Theme", Context.MODE_PRIVATE);
+        switch (sharedPreferences.getString("Theme", "Default")) {
+            case "Tema dispozitivului":
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                break;
+            case "Luminos":
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                break;
+            case "Întunecat":
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                break;
+        }
 
         getWordOfDay();
     }
@@ -93,5 +108,6 @@ public class AppLoading extends AppCompatActivity {
     }
 }
 
-//de facut ceva atunci cand nu este internet
-//de scris in fisier erorile
+//1.    de facut ceva atunci cand nu este internet
+//2.    de scris in fisier erorile
+//3.    bug anterior: imi creeaza 2 frame uri dupa loading screen cand tema e <> de system
