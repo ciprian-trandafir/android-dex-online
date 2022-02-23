@@ -7,4 +7,13 @@
     <string name="set_ri">Setări</string>
     <string name="setari">Setări</string>
     <string name="todo">TODO</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_something">Caută un cuvânt..</string>
+    <string name="word_of_day">Cuvântul zilei</string>
+    <string name="why">De ce?</string>
+    <string name="definitie">Definiție:</string>
+    <string name="source">sursa:</string>
+    <string name="added_by">adăugată de</string>
+    <string name="search_history">Istoric căutări</string>
 </resources>

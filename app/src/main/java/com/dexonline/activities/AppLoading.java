@@ -54,6 +54,8 @@ public class AppLoading extends AppCompatActivity {
                 JSONObject requestedRecord = response.getJSONObject("requested").getJSONObject("record");
                 WordOfDay wordOfDay = new WordOfDay(
                         requestedRecord.getString("year"),
+                        response.getString("day"),
+                        response.getString("month"),
                         requestedRecord.getString("word"),
                         requestedRecord.getString("reason"),
                         requestedRecord.getString("image")
@@ -73,6 +75,7 @@ public class AppLoading extends AppCompatActivity {
                     JSONObject wordOfDayObject = jsonRecordOthersRecord.getJSONObject(i);
                     listOthersWordOfDay.add(new WordOfDay(
                             wordOfDayObject.getString("year"),
+                            "", "",
                             wordOfDayObject.getString("word"),
                             wordOfDayObject.getString("reason"),
                             wordOfDayObject.getString("image")

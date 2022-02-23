@@ -22,4 +22,8 @@
         <item name="bounce_ballColor">@color/white</item>
         <item name="bounce_shadowColor">@color/white</item>
     </style>
+
+    <style name="AppHref">
+        <item name="android:textColor">@color/href_dark</item>
+    </style>
 </resources>

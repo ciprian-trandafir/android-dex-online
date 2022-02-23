@@ -3,6 +3,7 @@ package com.dexonline.fragments;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.dexonline.R;
+import com.dexonline.activities.SearchHistory;
 import com.dexonline.adapter.SettingsAdapter;
 import com.dexonline.classes.Setting;
 import org.jetbrains.annotations.NotNull;
@@ -70,6 +72,10 @@ public class Settings extends Fragment implements SettingsAdapter.SelectedSettin
         switch (setting.getId()) {
             case "theme":
                 themeUpdate();
+                break;
+            case "history":
+                startActivity(new Intent(getActivity(), SearchHistory.class));
+                requireActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 break;
         }
     }

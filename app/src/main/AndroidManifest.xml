@@ -16,6 +16,9 @@
         android:theme="@style/Theme.DexOnline"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activities.SearchHistory"
+            android:exported="false" />
+        <activity
             android:name=".activities.HomePage"
             android:exported="false" />
         <activity

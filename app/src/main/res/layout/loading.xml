@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
+
+        <com.agrawalsuneet.dotsloader.loaders.BounceLoader
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:bounce_animDuration="1000"
+            app:bounce_ballRadius="8dp"
+            app:bounce_showShadow="true"
+            app:bounce_ballColor="@color/white"
+            app:bounce_shadowColor="@color/white"/>
+    </LinearLayout>
+</RelativeLayout>
