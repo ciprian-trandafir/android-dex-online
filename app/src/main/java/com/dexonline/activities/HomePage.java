@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 import com.dexonline.R;
+import com.dexonline.fragments.Bookmarks;
 import com.dexonline.fragments.Home;
 import com.dexonline.fragments.Search;
 import com.dexonline.fragments.Settings;
@@ -43,6 +44,12 @@ public class HomePage extends AppCompatActivity {
                     FragmentTransaction fragmentTransaction4 = getSupportFragmentManager().beginTransaction();
                     fragmentTransaction4.replace(R.id.homePageContent, homeFragment, "");
                     fragmentTransaction4.commit();
+                    return true;
+                case R.id.nav_saved:
+                    Bookmarks bookmarksFragment = new Bookmarks();
+                    FragmentTransaction fragmentTransaction5 = getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction5.replace(R.id.homePageContent, bookmarksFragment, "");
+                    fragmentTransaction5.commit();
                     return true;
             }
 

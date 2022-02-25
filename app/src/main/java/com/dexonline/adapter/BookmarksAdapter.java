@@ -23,15 +23,14 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.jsoup.Jsoup;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 
-public class DefinitionAdapter extends RecyclerView.Adapter<DefinitionAdapter.DefinitionAdapterVh>{
+public class BookmarksAdapter extends RecyclerView.Adapter<BookmarksAdapter.BookmarksAdapterVh>{
     private static List<Definition> definitionList;
     @SuppressLint("StaticFieldLeak")
     private static Context context;
 
-    public DefinitionAdapter(List<Definition> definitionList_, Context context_) {
+    public BookmarksAdapter(List<Definition> definitionList_, Context context_) {
         definitionList = definitionList_;
         context = context_;
     }
@@ -39,14 +38,14 @@ public class DefinitionAdapter extends RecyclerView.Adapter<DefinitionAdapter.De
     @SuppressLint("InflateParams")
     @NonNull
     @Override
-    public DefinitionAdapter.DefinitionAdapterVh onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public BookmarksAdapter.BookmarksAdapterVh onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
-        return new DefinitionAdapterVh(LayoutInflater.from(context).inflate(R.layout.layout_definition, parent, false));
+        return new BookmarksAdapterVh(LayoutInflater.from(context).inflate(R.layout.layout_definition, parent, false));
     }
 
     @SuppressLint({"SetTextI18n", "UseCompatLoadingForDrawables"})
     @Override
-    public void onBindViewHolder(@NonNull DefinitionAdapter.DefinitionAdapterVh holder, int position) {
+    public void onBindViewHolder(@NonNull BookmarksAdapter.BookmarksAdapterVh holder, int position) {
         Definition definition = definitionList.get(position);
 
         if (definition.isBookmarked()) {
@@ -65,11 +64,11 @@ public class DefinitionAdapter extends RecyclerView.Adapter<DefinitionAdapter.De
         return definitionList.size();
     }
 
-    public static class DefinitionAdapterVh extends RecyclerView.ViewHolder {
+    public class BookmarksAdapterVh extends RecyclerView.ViewHolder {
         TextView wordDefinition, definitionSource, definitionAddedBy;
         ImageView saveBookmark;
         @SuppressLint("UseCompatLoadingForDrawables")
-        public DefinitionAdapterVh(@NonNull View itemView) {
+        public BookmarksAdapterVh(@NonNull View itemView) {
             super(itemView);
             wordDefinition = itemView.findViewById(R.id.wordDefinition);
             definitionSource = itemView.findViewById(R.id.definitionSource);
@@ -102,6 +101,8 @@ public class DefinitionAdapter extends RecyclerView.Adapter<DefinitionAdapter.De
             });
 
             saveBookmark.setOnClickListener(v -> {
+                saveBookmark.setImageDrawable(context.getDrawable(R.drawable.ic_bookmark));
+
                 int position = getAbsoluteAdapterPosition();
                 Definition definition = definitionList.get(position);
                 SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
@@ -116,27 +117,8 @@ public class DefinitionAdapter extends RecyclerView.Adapter<DefinitionAdapter.De
                 Type type_ = new TypeToken<List<Definition>>(){}.getType();
                 List<Definition> bookmarkedDefinitions = gson.fromJson(json_, type_);
 
-                if (definition.isBookmarked()) {
-                    saveBookmark.setImageDrawable(context.getDrawable(R.drawable.ic_bookmark));
-                    definitionList.get(position).setBookmarked(false);
-
-                    bookmarkedDefinitions.remove(bookmarkedIds.indexOf(definition.getId()));
-                    bookmarkedIds.remove(definition.getId());
-                } else {
-                    saveBookmark.setImageDrawable(context.getDrawable(R.drawable.ic_bookmarked));
-                    definitionList.get(position).setBookmarked(true);
-
-                    if (bookmarkedIds == null) {
-                        bookmarkedIds = new ArrayList<>();
-                    }
-
-                    if (bookmarkedDefinitions == null) {
-                        bookmarkedDefinitions = new ArrayList<>();
-                    }
-
-                    bookmarkedIds.add(definition.getId());
-                    bookmarkedDefinitions.add(definition);
-                }
+                bookmarkedDefinitions.remove(bookmarkedIds.indexOf(definition.getId()));
+                bookmarkedIds.remove(definition.getId());
 
                 String bookmarkedIds_ = gson.toJson(bookmarkedIds);
                 editor.putString("bookmarkedIds", bookmarkedIds_);
@@ -145,6 +127,10 @@ public class DefinitionAdapter extends RecyclerView.Adapter<DefinitionAdapter.De
                 editor.putString("bookmarkedDefinitions", bookmarkedDefinitions_);
 
                 editor.apply();
+
+                definitionList.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, definitionList.size());
             });
         }
     }

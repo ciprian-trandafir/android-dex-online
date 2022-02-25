@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -44,6 +45,8 @@ public class Search extends Fragment {
     private Dialog loadingDialog;
     private final List<Definition> definitionList = new ArrayList<>();
     private DefinitionAdapter definitionAdapter;
+    private RecyclerView recyclerView;
+    private TextView hintText;
 
     public Search() {
         // Required empty public constructor
@@ -59,8 +62,8 @@ public class Search extends Fragment {
     public void onViewCreated(@NotNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         loadingDialog = buildLoadingDialog(getActivity());
-
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerViewDefinitions);
+        hintText = view.findViewById(R.id.searchHint);
+        recyclerView = view.findViewById(R.id.recyclerViewDefinitions);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.addItemDecoration(new DividerItemDecoration(requireActivity(), DividerItemDecoration.VERTICAL));
         definitionAdapter = new DefinitionAdapter(definitionList, getActivity());
@@ -90,24 +93,11 @@ public class Search extends Fragment {
             try {
                 JSONArray arrayDefinitions = new JSONArray(response.getString("definitions"));
                 if (arrayDefinitions.length() == 0) {
-                    Toast.makeText(getActivity(), "nimic", Toast.LENGTH_LONG).show();
+                    handleView(false, definitionAdapter.getItemCount());
                 } else {
-                    definitionList.clear();
-                    for (int i = 0; i < arrayDefinitions.length(); i++) {
-                        JSONObject definition = arrayDefinitions.getJSONObject(i);
-                        definitionList.add(new Definition(
-                                definition.getString("id"),
-                                definition.getString("htmlRep"),
-                                definition.getString("userNick"),
-                                definition.getString("sourceName"),
-                                definition.getString("createDate"),
-                                definition.getString("modDate")
-                                ));
-                    }
-                    definitionAdapter.notifyDataSetChanged();
-
                     SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
                     Gson gson = new Gson();
+
                     String json = sharedPrefs.getString("searchHistory", "");
                     Type type = new TypeToken<List<com.dexonline.classes.Search>>(){}.getType();
                     List<com.dexonline.classes.Search> searchList = gson.fromJson(json, type);
@@ -116,7 +106,7 @@ public class Search extends Fragment {
                         searchList = new ArrayList<>();
                     }
 
-                    @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("HH:mm dd-MM-yyyy");
+                    @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("HH:mm dd-MM");
                     Date date = new Date(System.currentTimeMillis());
                     searchList.add(new com.dexonline.classes.Search(response.getString("word"), formatter.format(date)));
 
@@ -124,15 +114,51 @@ public class Search extends Fragment {
                     String listOthersWordOfDay_ = gson.toJson(searchList);
                     editor.putString("searchHistory", listOthersWordOfDay_);
                     editor.apply();
+
+                    String json_ = sharedPrefs.getString("bookmarkedIds", "");
+                    Type type_ = new TypeToken<List<String>>(){}.getType();
+                    List<String> bookmarkedIds = gson.fromJson(json_, type_);
+                    if (bookmarkedIds == null) {
+                        bookmarkedIds = new ArrayList<>();
+                    }
+
+                    definitionList.clear();
+                    for (int i = 0; i < arrayDefinitions.length(); i++) {
+                        JSONObject definition = arrayDefinitions.getJSONObject(i);
+                        String definitionId = definition.getString("id");
+                        boolean bookmarked = bookmarkedIds.contains(definitionId);
+                        definitionList.add(new Definition(
+                                definitionId,
+                                definition.getString("htmlRep"),
+                                definition.getString("userNick"),
+                                definition.getString("sourceName"),
+                                definition.getString("createDate"),
+                                definition.getString("modDate"),
+                                bookmarked
+                        ));
+                    }
+                    definitionAdapter.notifyDataSetChanged();
+                    handleView(true, definitionAdapter.getItemCount());
                 }
-                loadingDialog.hide();
             } catch (Exception e) {
                 Log.d("ERROR", e.toString());
             }
-        }, error -> Log.d("ERROR REQUEST", error.toString()));
+        }, error -> handleView(false, definitionAdapter.getItemCount()));
 
         RequestQueue requestQueue = Volley.newRequestQueue(requireActivity());
         requestQueue.add(jsonObjectRequest);
+    }
+
+    private void handleView(boolean success, int size) {
+        loadingDialog.hide();
+        if (success && size > 0) {
+            recyclerView.setVisibility(View.VISIBLE);
+            hintText.setVisibility(View.INVISIBLE);
+        }
+
+        if (!success) {
+            Toast.makeText(getActivity(), "Nu s-au găsit rezulate", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @SuppressLint("InflateParams")

@@ -16,4 +16,7 @@
     <string name="source">sursa:</string>
     <string name="added_by">adăugată de</string>
     <string name="search_history">Istoric căutări</string>
+    <string name="bookmarks">Definiții salvate</string>
+    <string name="nothing_to_see">Nimic de văzut aici</string>
+    <string name="serach_hint_1">Ce doriți să căutați astăzi?</string>
 </resources>

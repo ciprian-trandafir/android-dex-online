@@ -41,21 +41,21 @@ public class Settings extends Fragment implements SettingsAdapter.SelectedSettin
     @Override
     public void onViewCreated(@NotNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //manage theme
-        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("Theme", Context.MODE_PRIVATE);
-        String themeName = sharedPreferences.getString("Theme", "Tema dispozitivului");
-
-        if (themeName.equalsIgnoreCase("Tema dispozitivului")) {
-            themeIndex = 0;
-        } else if (themeName.equalsIgnoreCase("Luminos")) {
-            themeIndex = 1;
-        } else if (themeName.equalsIgnoreCase("Întunecat")) {
-            themeIndex = 2;
-        }
-
         settingList.add(new Setting("notification", "Notificări", "ic_notification"));
         if (android.os.Build.VERSION.SDK_INT >= 29) {
             settingList.add(new Setting("theme", "Aspect general", "ic_dark_mode"));
+            SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("Theme", Context.MODE_PRIVATE);
+            switch (sharedPreferences.getString("Theme", "default")) {
+                case "default":
+                    themeIndex = 0;
+                    break;
+                case "light":
+                    themeIndex = 1;
+                    break;
+                case "dark":
+                    themeIndex = 2;
+                    break;
+            }
         }
         settingList.add(new Setting("history", "Istoric căutări", "ic_history"));
         settingList.add(new Setting("contact", "Despre noi", "ic_info"));
@@ -88,30 +88,30 @@ public class Settings extends Fragment implements SettingsAdapter.SelectedSettin
             .setSingleChoiceItems(items, themeIndex, (dialogg, which) -> {
                 switch (which) {
                     case 0:
-                        theme = "Tema dispozitivului";
+                        theme = "default";
                         break;
                     case 1:
-                        theme = "Luminos";
+                        theme = "light";
                         break;
                     case 2:
-                        theme = "Întunecat";
+                        theme = "dark";
                         break;
                 }
             })
             .setPositiveButton("OK", (dialogg, which) -> {
                 switch (theme) {//bug aici
-                    case "Tema dispozitivului":
-                        setTheme("Tema dispozitivului");
+                    case "default":
+                        setTheme("default");
                         themeIndex = 0;
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
                         break;
-                    case "Luminos":
-                        setTheme("Luminos");
+                    case "light":
+                        setTheme("light");
                         themeIndex = 1;
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                         break;
-                    case "Întunecat":
-                        setTheme("Întunecat");
+                    case "dark":
+                        setTheme("dark");
                         themeIndex = 2;
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                         break;

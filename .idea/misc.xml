@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Users/cipri/AndroidStudioProjects/DexOnline/app/src/main/res/drawable/ic_back.xml" value="0.201" />
         <entry key="..\:/Users/cipri/AndroidStudioProjects/DexOnline/app/src/main/res/drawable/ic_bookmark.xml" value="0.201" />
+        <entry key="..\:/Users/cipri/AndroidStudioProjects/DexOnline/app/src/main/res/drawable/ic_bookmarked.xml" value="0.201" />
         <entry key="..\:/Users/cipri/AndroidStudioProjects/DexOnline/app/src/main/res/drawable/ic_copy.xml" value="0.201" />
         <entry key="..\:/Users/cipri/AndroidStudioProjects/DexOnline/app/src/main/res/drawable/ic_dark_mode.xml" value="0.201" />
         <entry key="..\:/Users/cipri/AndroidStudioProjects/DexOnline/app/src/main/res/drawable/ic_delete.xml" value="0.201" />
@@ -21,10 +22,12 @@
         <entry key="..\:/Users/cipri/AndroidStudioProjects/DexOnline/app/src/main/res/layout/activity_main.xml" value="0.18432971014492755" />
         <entry key="..\:/Users/cipri/AndroidStudioProjects/DexOnline/app/src/main/res/layout/activity_search_history.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/cipri/AndroidStudioProjects/DexOnline/app/src/main/res/layout/activity_search_history2.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/cipri/AndroidStudioProjects/DexOnline/app/src/main/res/layout/fragment_bookmarks.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/cipri/AndroidStudioProjects/DexOnline/app/src/main/res/layout/fragment_home.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/cipri/AndroidStudioProjects/DexOnline/app/src/main/res/layout/fragment_search.xml" value="0.2501302761855133" />
         <entry key="..\:/Users/cipri/AndroidStudioProjects/DexOnline/app/src/main/res/layout/fragment_settings.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/cipri/AndroidStudioProjects/DexOnline/app/src/main/res/layout/layout_definition.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/cipri/AndroidStudioProjects/DexOnline/app/src/main/res/layout/layout_definition_bookmarks.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/cipri/AndroidStudioProjects/DexOnline/app/src/main/res/layout/layout_search_history.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/cipri/AndroidStudioProjects/DexOnline/app/src/main/res/layout/layout_settings.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/cipri/AndroidStudioProjects/DexOnline/app/src/main/res/layout/layout_word_of_day.xml" value="0.22826086956521738" />

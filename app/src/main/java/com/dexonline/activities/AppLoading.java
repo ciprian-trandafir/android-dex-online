@@ -26,21 +26,23 @@ public class AppLoading extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (android.os.Build.VERSION.SDK_INT >= 29) {
+            SharedPreferences sharedPreferences = getSharedPreferences("Theme", Context.MODE_PRIVATE);
+            switch (sharedPreferences.getString("Theme", "default")) {
+                case "default":
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                    break;
+                case "light":
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    break;
+                case "dark":
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    break;
+            }
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_loading);
-
-        SharedPreferences sharedPreferences = getSharedPreferences("Theme", Context.MODE_PRIVATE);
-        switch (sharedPreferences.getString("Theme", "Default")) {
-            case "Tema dispozitivului":
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-                break;
-            case "Luminos":
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                break;
-            case "Întunecat":
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                break;
-        }
 
         getWordOfDay();
     }
@@ -66,7 +68,8 @@ public class AppLoading extends AppCompatActivity {
                         requestedRecord.getJSONObject("definition").getString("userNick"),
                         requestedRecord.getJSONObject("definition").getString("sourceName"),
                         requestedRecord.getJSONObject("definition").getString("createDate"),
-                        requestedRecord.getJSONObject("definition").getString("modDate")
+                        requestedRecord.getJSONObject("definition").getString("modDate"),
+                        false
                 );
 
                 List<WordOfDay> listOthersWordOfDay = new ArrayList<>();
@@ -112,5 +115,8 @@ public class AppLoading extends AppCompatActivity {
 }
 
 //1.    de facut ceva atunci cand nu este internet
-//2.    de scris in fisier erorile
-//3.    bug anterior: imi creeaza 2 frame uri dupa loading screen cand tema e <> de system
+//2.    de scris in fisier erorile // de trimis pe serv meu // de adaugat optiune in setari
+//3.    bug cand schimb tema. cu selected item bottom nav bar
+//4.    sa numar salvarile si sa le afisez in nav bar
+//5.    logo pe dark
+//6.    logo app
