@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dexonline.R;
 import com.dexonline.classes.WordOfDay;
 import com.squareup.picasso.Picasso;
-
 import java.util.List;
 
 public class WordOfDayAdapter extends RecyclerView.Adapter<WordOfDayAdapter.WordOfDayAdapterVh>{

@@ -19,4 +19,12 @@
     <string name="bookmarks">Definiții salvate</string>
     <string name="nothing_to_see">Nimic de văzut aici</string>
     <string name="serach_hint_1">Ce doriți să căutați astăzi?</string>
+    <string name="notifications">Notificări</string>
+    <string name="general">General</string>
+    <string name="do_you_want_notifications">Doriți să primiți notificări cu cuvântul zilei?</string>
+    <string name="what_time_notificaiton">La ce oră doriți să primiți notificarea?</string>
+    <string name="include_definition">Include definiția</string>
+    <string name="include_reason">Include motivul</string>
+    <string name="preview">Previzualizare</string>
+    <string name="more_settings">Mai multe setări</string>
 </resources>

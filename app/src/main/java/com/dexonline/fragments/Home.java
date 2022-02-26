@@ -3,39 +3,29 @@ package com.dexonline.fragments;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.dexonline.R;
-import com.dexonline.adapter.SettingsAdapter;
 import com.dexonline.adapter.WordOfDayAdapter;
 import com.dexonline.classes.Definition;
 import com.dexonline.classes.WordOfDay;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
-
 import org.jetbrains.annotations.NotNull;
-
-import java.io.InputStream;
 import java.lang.reflect.Type;
-import java.net.URL;
-import java.util.Date;
 import java.util.List;
 
 public class Home extends Fragment {

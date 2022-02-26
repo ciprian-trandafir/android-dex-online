@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.dexonline.R;
+import com.dexonline.activities.Notifications;
 import com.dexonline.activities.SearchHistory;
 import com.dexonline.adapter.SettingsAdapter;
 import com.dexonline.classes.Setting;
@@ -65,6 +66,8 @@ public class Settings extends Fragment implements SettingsAdapter.SelectedSettin
         recyclerView.addItemDecoration(new DividerItemDecoration(requireActivity(), DividerItemDecoration.VERTICAL));
         SettingsAdapter settingsAdapter = new SettingsAdapter(settingList, this, getContext());
         recyclerView.setAdapter(settingsAdapter);
+
+        //navigationView.getMenu().getItem(0).setChecked(true);
     }
 
     @Override
@@ -75,6 +78,10 @@ public class Settings extends Fragment implements SettingsAdapter.SelectedSettin
                 break;
             case "history":
                 startActivity(new Intent(getActivity(), SearchHistory.class));
+                requireActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                break;
+            case "notification":
+                startActivity(new Intent(getActivity(), Notifications.class));
                 requireActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 break;
         }

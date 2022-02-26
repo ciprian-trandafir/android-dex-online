@@ -4,16 +4,6 @@ public class Definition {
     private String id, htmlRep, userNick, sourceName, createDate, modDate;
     private boolean bookmarked;
 
-    public Definition() {
-        this.id = "";
-        this.htmlRep = "";
-        this.userNick = "";
-        this.sourceName = "";
-        this.createDate = "";
-        this.modDate = "";
-        this.bookmarked = false;
-    }
-
     public Definition(String id, String htmlRep, String userNick, String sourceName, String createDate, String modDate, boolean bookmarked) {
         this.id = id;
         this.htmlRep = htmlRep;

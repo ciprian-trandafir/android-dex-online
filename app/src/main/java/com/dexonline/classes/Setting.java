@@ -3,12 +3,6 @@ package com.dexonline.classes;
 public class Setting {
     private String id, name, icon;
 
-    public Setting() {
-        this.id = "";
-        this.name = "";
-        this.icon = "";
-    }
-
     public Setting(String id, String name, String icon) {
         this.id = id;
         this.name = name;

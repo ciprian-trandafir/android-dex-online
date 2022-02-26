@@ -29,6 +29,7 @@ import com.android.volley.toolbox.Volley;
 import com.dexonline.R;
 import com.dexonline.adapter.DefinitionAdapter;
 import com.dexonline.classes.Definition;
+import com.dexonline.classes.Helper;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.jetbrains.annotations.NotNull;
@@ -72,7 +73,13 @@ public class Search extends Fragment {
         searchInput = view.findViewById(R.id.searchInput);
         searchInput.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                searchWord(searchInput.getText().toString().trim());
+                if (Helper.isNetwork(requireActivity())) {
+                    searchWord(searchInput.getText().toString().trim());
+                } else {
+                    Dialog dialogNoNetwork = buildNoInternetDialog();
+                    dialogNoNetwork.show();
+                }
+
                 View view_ = requireActivity().getCurrentFocus();
                 if (view_ != null) {
                     InputMethodManager imm = (InputMethodManager)requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -81,6 +88,7 @@ public class Search extends Fragment {
 
                 return true;
             }
+
             return false;
         });
     }
@@ -170,6 +178,20 @@ public class Search extends Fragment {
                 .setView(LayoutInflater.from(context).inflate(R.layout.loading, null, false));
         dialog = builder.create();
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        return dialog;
+    }
+
+    public Dialog buildNoInternetDialog() {
+        Dialog dialog;
+        AlertDialog.Builder builder;
+        builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Eroare de conexiune")
+                .setMessage("Nu se poate comunica cu serverul.\nVerifică dacă ai conexiune la internet.")
+                .setNegativeButton("IEȘIRE", (dialogg, which) -> requireActivity().finishAffinity())
+                .setCancelable(false)
+                .setPositiveButton("OK", (dialogg, which) -> dialogg.dismiss());
+        dialog = builder.create();
+
         return dialog;
     }
 }
