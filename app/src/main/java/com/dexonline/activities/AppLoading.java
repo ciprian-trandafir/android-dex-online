@@ -1,5 +1,13 @@
 package com.dexonline.activities;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.os.Handler;
+import android.preference.PreferenceManager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import com.android.volley.Request;
@@ -13,14 +21,6 @@ import com.dexonline.classes.Notification;
 import com.dexonline.classes.WordOfDay;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.os.Handler;
-import android.preference.PreferenceManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.lang.reflect.Type;
@@ -176,5 +176,3 @@ public class AppLoading extends AppCompatActivity {
 
 //3.    bug cand schimb tema. cu selected item bottom nav bar
 //5.    logo pe dark
-//6.    logo app
-//7.    poate fac si aia cu numaratul de def salvate
