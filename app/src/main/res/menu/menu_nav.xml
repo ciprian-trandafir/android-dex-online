@@ -10,7 +10,7 @@
         android:title="@string/caut" />
     <item
         android:id="@+id/nav_saved"
-        android:icon="@drawable/ic_bookmark"
+        android:icon="@drawable/ic_bookmarked"
         android:title="@string/salvate" />
     <item
         android:id="@+id/nav_settings"

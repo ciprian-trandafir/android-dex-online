@@ -149,7 +149,7 @@ public class Search extends Fragment {
                     handleView(true, definitionAdapter.getItemCount());
                 }
             } catch (Exception e) {
-                Log.d("ERROR", e.toString());
+                Helper.writeError(new com.dexonline.classes.Error("try-catch", e.toString(), "searchWord()"), getActivity());
             }
         }, error -> handleView(false, definitionAdapter.getItemCount()));
 

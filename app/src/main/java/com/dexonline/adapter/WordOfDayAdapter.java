@@ -2,6 +2,7 @@ package com.dexonline.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +38,7 @@ public class WordOfDayAdapter extends RecyclerView.Adapter<WordOfDayAdapter.Word
         Picasso.get().load(wordOfDay.getImage()).into(holder.wordOfDayImageRW);
         holder.wordOfDayTitleRW.setText(holder.wordOfDayTitleRW.getText() + " - " + wordOfDay.getYear());
         holder.wordOfDayRW.setText(wordOfDay.getWord());
-        holder.wordOfDayReasonRW.setText(wordOfDay.getReason());
+        holder.wordOfDayReasonRW.setText(Html.fromHtml(wordOfDay.getReason()));
     }
 
     @Override

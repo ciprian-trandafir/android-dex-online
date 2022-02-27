@@ -70,7 +70,6 @@ public class Home extends Fragment {
         wordOfDayText = view.findViewById(R.id.wordOfDay);
         wordOfDayText.setText(wordOfDay.getWord());
 
-        //de facut aici misto in caz ca n are net
         wordOfDayDefinitionText = view.findViewById(R.id.wordOfDayDefinition);
         wordOfDayDefinitionText.setText(Html.fromHtml(wordOfDayDefinition.getHtmlRep()));
 

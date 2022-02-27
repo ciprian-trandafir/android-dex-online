@@ -21,7 +21,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.lang.reflect.Type;
@@ -78,8 +77,7 @@ public class AppLoading extends AppCompatActivity {
 
     public void onBackPressed() { }
 
-    public void getWordOfDay()
-    {
+    public void getWordOfDay() {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "https://dexonline.ro/cuvantul-zilei/json", null, response -> {
             try {
                 JSONObject requestedRecord = response.getJSONObject("requested").getJSONObject("record");
@@ -131,9 +129,9 @@ public class AppLoading extends AppCompatActivity {
                     overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 }, 1000);
             } catch (Exception e) {
-                Log.d("ERROR", e.toString());
+                Helper.writeError(new com.dexonline.classes.Error("try-catch", e.toString(), "getWordOfDay()"), this);
             }
-        }, error -> Log.d("ERROR REQUEST", error.toString()));
+        }, error -> Helper.writeError(new com.dexonline.classes.Error("request", error.toString(), "getWordOfDay()"), this));
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonObjectRequest);
@@ -176,9 +174,7 @@ public class AppLoading extends AppCompatActivity {
     }
 }
 
-//2.    de scris in fisier erorile // de trimis pe serv meu // de adaugat optiune in setari
 //3.    bug cand schimb tema. cu selected item bottom nav bar
 //5.    logo pe dark
 //6.    logo app
 //7.    poate fac si aia cu numaratul de def salvate
-//8.    la search sa fie max 1 cuvant
