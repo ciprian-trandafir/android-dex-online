@@ -104,7 +104,7 @@ public class DefinitionAdapter extends RecyclerView.Adapter<DefinitionAdapter.De
             saveBookmark.setOnClickListener(v -> {
                 int position = getAbsoluteAdapterPosition();
                 Definition definition = definitionList.get(position);
-                SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+                SharedPreferences sharedPrefs = androidx.preference.PreferenceManager.getDefaultSharedPreferences(context);
                 SharedPreferences.Editor editor = sharedPrefs.edit();
                 Gson gson = new Gson();
 

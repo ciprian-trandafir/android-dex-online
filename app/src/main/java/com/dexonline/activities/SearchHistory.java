@@ -31,14 +31,15 @@ public class SearchHistory extends AppCompatActivity {
         setContentView(R.layout.activity_search_history);
 
         ImageView back = findViewById(R.id.searchHistoryBack);
-        back.setOnClickListener(v -> {
-            finish();
-            overridePendingTransition(0, android.R.anim.fade_out);
-        });
+        back.setOnClickListener(v -> killActivity());
 
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = sharedPrefs.edit();;
+        SharedPreferences sharedPrefs = androidx.preference.PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPrefs.edit();
         Gson gson = new Gson();
+
+        editor.putBoolean("anotherActivity", true);
+        editor.apply();
+
         String json = sharedPrefs.getString("searchHistory", "");
         Type type = new TypeToken<List<Search>>(){}.getType();
         searchList = gson.fromJson(json, type);
@@ -87,6 +88,10 @@ public class SearchHistory extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        killActivity();
+    }
+
+    private void killActivity() {
         finish();
         overridePendingTransition(0, android.R.anim.fade_out);
     }

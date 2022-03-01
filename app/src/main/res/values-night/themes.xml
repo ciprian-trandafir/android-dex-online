@@ -18,7 +18,7 @@
     </style>
 
     <style name="AppLoading">
-        <item name="android:src">@drawable/logo_light</item>
+        <item name="android:src">@drawable/logo_dark</item>
         <item name="bounce_ballColor">@color/white</item>
         <item name="bounce_shadowColor">@color/white</item>
     </style>

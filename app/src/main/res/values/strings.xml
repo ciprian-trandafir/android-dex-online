@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Dex Online</string>
     <string name="text_loading_screen">© 2022\nCiprian Trandafir. All rights reserved.</string>
+    <string name="copyright">© Ciprian Trandafir</string>
     <string name="acas">Acasă</string>
     <string name="caut">Caută</string>
     <string name="salvate">Salvate</string>
@@ -27,4 +28,6 @@
     <string name="include_reason">Include motivul</string>
     <string name="preview">Previzualizare</string>
     <string name="more_settings">Mai multe setări</string>
+    <string name="about_app">Despre aplicație</string>
+    <string name="dexonline_ro">dexonline.ro</string>
 </resources>

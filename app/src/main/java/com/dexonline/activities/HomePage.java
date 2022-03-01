@@ -1,7 +1,10 @@
 package com.dexonline.activities;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 import com.dexonline.R;
@@ -12,6 +15,7 @@ import com.dexonline.fragments.Settings;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class HomePage extends AppCompatActivity {
+
     @SuppressLint("NonConstantResourceId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,5 +58,17 @@ public class HomePage extends AppCompatActivity {
 
             return true;
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences sharedPrefs = androidx.preference.PreferenceManager.getDefaultSharedPreferences(this);
+        boolean anotherActivity = sharedPrefs.getBoolean("anotherActivity", false);
+
+        if (!anotherActivity) {
+            NavigationBarView navigationView = findViewById(R.id.navigation);
+            navigationView.getMenu().getItem(0).setChecked(true);
+        }
     }
 }

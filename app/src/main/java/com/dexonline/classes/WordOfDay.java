@@ -27,12 +27,4 @@ public class WordOfDay {
     public String getImage() {
         return image;
     }
-
-    public String getDay() {
-        return day;
-    }
-
-    public String getMonth() {
-        return month;
-    }
 }

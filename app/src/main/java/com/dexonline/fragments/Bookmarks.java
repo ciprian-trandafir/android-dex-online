@@ -36,7 +36,7 @@ public class Bookmarks extends Fragment {
 
     public void onViewCreated(@NotNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        SharedPreferences sharedPrefs = androidx.preference.PreferenceManager.getDefaultSharedPreferences(requireActivity());
         Gson gson = new Gson();
         String json = sharedPrefs.getString("bookmarkedDefinitions", "");
         Type type = new TypeToken<List<Definition>>(){}.getType();

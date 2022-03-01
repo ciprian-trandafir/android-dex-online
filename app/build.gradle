@@ -3,7 +3,7 @@ plugins {
 }
 
 int VERSION_CODE = 1
-String VERSION_NAME = "1.0.0 - BETA"
+String VERSION_NAME = "1.0.0"
 
 android {
     compileSdk 31
@@ -48,4 +48,5 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'org.jsoup:jsoup:1.14.3'
+    implementation 'androidx.preference:preference:1.2.0'
 }

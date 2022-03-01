@@ -30,14 +30,6 @@ public class Definition {
         return sourceName;
     }
 
-    public String getCreateDate() {
-        return createDate;
-    }
-
-    public String getModDate() {
-        return modDate;
-    }
-
     public boolean isBookmarked() {
         return bookmarked;
     }

@@ -18,28 +18,23 @@
         android:theme="@style/Theme.DexOnline"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activities.AboutUs"
+            android:exported="false" />
+        <activity
             android:name=".activities.SearchHistory"
             android:exported="false" />
         <activity
             android:name=".activities.HomePage"
             android:exported="false" />
         <activity
-            android:name=".activities.Notifications"
-            android:exported="false" />
-        <activity
             android:name=".activities.AppLoading"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".classes.AlarmReceiver"/>
-        <receiver android:name=".classes.DeviceBootReceiver"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
     </application>
+
 </manifest>

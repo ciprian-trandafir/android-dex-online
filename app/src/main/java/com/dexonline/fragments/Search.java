@@ -55,7 +55,6 @@ public class Search extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_search, container, false);
     }
 
@@ -103,7 +102,7 @@ public class Search extends Fragment {
                 if (arrayDefinitions.length() == 0) {
                     handleView(false, definitionAdapter.getItemCount());
                 } else {
-                    SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                    SharedPreferences sharedPrefs = androidx.preference.PreferenceManager.getDefaultSharedPreferences(requireActivity());
                     Gson gson = new Gson();
 
                     String json = sharedPrefs.getString("searchHistory", "");

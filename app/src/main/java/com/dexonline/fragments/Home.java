@@ -36,7 +36,6 @@ public class Home extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
@@ -44,7 +43,7 @@ public class Home extends Fragment {
     @Override
     public void onViewCreated(@NotNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        SharedPreferences sharedPrefs = androidx.preference.PreferenceManager.getDefaultSharedPreferences(requireActivity());
         Gson gson = new Gson();
 
         String json = sharedPrefs.getString("listOthersWordOfDay", "");
